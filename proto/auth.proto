@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package auth_grpc;
+
+option go_package = "/auth-grpc";
+
+service AuthGPRC{
+    rpc GetPublicKey(Empty) returns (Response);
+}
+
+message Empty{}
+
+message Response{
+    bytes public_key = 1;
+}

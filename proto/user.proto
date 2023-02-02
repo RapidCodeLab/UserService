@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package user_grpc;
+
+option go_package = "/user-grpc";
+
+
+service UserGPRC{
+    rpc GetUser(UserRequest) returns (UserResponse);
+    rpc CreateUser(UserRequest) returns (UserResponse);
+}
+
+message UserRequest{
+    string email = 1;
+    string password = 2;
+    int64 role = 3;
+}
+
+message UserResponse{
+    string id = 1;
+    string email = 2;
+    UserStatus user_status = 3;
+    repeated UserRoles user_roles = 4;
+}
+
+enum UserStatus {
+    NEW = 0;
+    ACTIVE = 1;
+    BANNED = 2;
+}
+
+enum UserRoles {
+    SUPER = 0;
+    ADMIN = 1;
+    REGULAR = 2;
+}
